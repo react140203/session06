@@ -28,18 +28,31 @@ export const TaskList = () => {
   //   console.log(x);
 
   const [taskList, setTaskList] = useState(taskListInit);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
   const toggle = (task: ITask) => {
     task.done = !task.done;
     //shallow copy
     // 1. setTaskList(taskList.concat());
     // 2. setTaskList(taskList.slice());
     setTaskList([...taskList]); //Operator Rest
-
-    console.log(taskList);
   };
+
+  const add = () => {
+    //console.log(newTaskTitle);
+    // taskList.push({ id: Math.random(), title: newTaskTitle, done: false });
+    // setTaskList([...taskList]);
+
+    setTaskList([
+      ...taskList,
+      { id: Math.random(), title: newTaskTitle, done: false },
+    ]);
+  };
+
   return (
     <>
       <div>TaskList</div>
+      <input onChange={(e) => setNewTaskTitle(e.target.value)}></input>
+      <button onClick={add}>➕</button>
       <ul>
         {taskList.map((task) => (
           <li key={task.id}>
