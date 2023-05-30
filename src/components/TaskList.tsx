@@ -1,5 +1,6 @@
 //rafc <- snippet es7+
 import React, { useState } from "react";
+import { TaskInput } from "./TaskInput";
 
 interface ITask {
   id: number;
@@ -28,7 +29,6 @@ export const TaskList = () => {
   //   console.log(x);
 
   const [taskList, setTaskList] = useState(taskListInit);
-  const [newTaskTitle, setNewTaskTitle] = useState("");
   const toggle = (task: ITask) => {
     task.done = !task.done;
     //shallow copy
@@ -37,16 +37,12 @@ export const TaskList = () => {
     setTaskList([...taskList]); //Operator Rest
   };
 
-  const add = () => {
+  const add = (title: string) => {
     //console.log(newTaskTitle);
     // taskList.push({ id: Math.random(), title: newTaskTitle, done: false });
     // setTaskList([...taskList]);
 
-    setTaskList([
-      ...taskList,
-      { id: Math.random(), title: newTaskTitle, done: false },
-    ]);
-    setNewTaskTitle("");
+    setTaskList([...taskList, { id: Math.random(), title, done: false }]);
   };
 
   const remove = (task: ITask) => {
@@ -62,11 +58,7 @@ export const TaskList = () => {
       {/* un-controlled */}
       {/* <input onChange={(e) => setNewTaskTitle(e.target.value)}></input> */}
 
-      <input
-        value={newTaskTitle}
-        onChange={(e) => setNewTaskTitle(e.target.value)}
-      ></input>
-      <button onClick={add}>➕</button>
+      <TaskInput add={add}></TaskInput>
       <ul>
         {taskList.map((task) => (
           <li key={task.id}>
