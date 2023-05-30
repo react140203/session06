@@ -46,12 +46,19 @@ export const TaskList = () => {
       ...taskList,
       { id: Math.random(), title: newTaskTitle, done: false },
     ]);
+    setNewTaskTitle("");
   };
 
   return (
     <>
       <div>TaskList</div>
-      <input onChange={(e) => setNewTaskTitle(e.target.value)}></input>
+      {/* un-controlled */}
+      {/* <input onChange={(e) => setNewTaskTitle(e.target.value)}></input> */}
+
+      <input
+        value={newTaskTitle}
+        onChange={(e) => setNewTaskTitle(e.target.value)}
+      ></input>
       <button onClick={add}>➕</button>
       <ul>
         {taskList.map((task) => (
@@ -62,6 +69,7 @@ export const TaskList = () => {
               onChange={() => toggle(task)}
             />
             {task.title}
+            <button>❌</button>
           </li>
         ))}
       </ul>
