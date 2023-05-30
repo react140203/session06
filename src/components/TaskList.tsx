@@ -1,8 +1,9 @@
 //rafc <- snippet es7+
 import React, { useState } from "react";
 import { TaskInput } from "./TaskInput";
+import { TaskItem } from "./TaskItem";
 
-interface ITask {
+export interface ITask {
   id: number;
   title: string;
   done: boolean;
@@ -62,15 +63,7 @@ export const TaskList = () => {
 
       <ul>
         {taskList.map((task) => (
-          <li key={task.id}>
-            <input
-              type="checkbox"
-              checked={task.done}
-              onChange={() => toggle(task)}
-            />
-            {task.title}
-            <button onClick={() => remove(task)}>❌</button>
-          </li>
+          <TaskItem key={task.id} task={task} remove={remove} toggle={toggle} />
         ))}
       </ul>
     </>
