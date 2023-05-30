@@ -11,7 +11,7 @@ const taskListInit = [
   { id: 2, title: "iki", done: false },
   { id: 3, title: "se", done: false },
   { id: 4, title: "quad", done: true },
-];
+]; //ref1;
 
 export const TaskList = () => {
   //   //value, reference
@@ -30,7 +30,11 @@ export const TaskList = () => {
   const [taskList, setTaskList] = useState(taskListInit);
   const toggle = (task: ITask) => {
     task.done = !task.done;
-    setTaskList(taskList);
+    //shallow copy
+    // 1. setTaskList(taskList.concat());
+    // 2. setTaskList(taskList.slice());
+    setTaskList([...taskList]); //Operator Rest
+
     console.log(taskList);
   };
   return (
