@@ -49,6 +49,11 @@ export const TaskList = () => {
     setNewTaskTitle("");
   };
 
+  const remove = (task: ITask) => {
+    const newList = taskList.filter((x) => x.id !== task.id);
+    setTaskList(newList);
+  };
+
   return (
     <>
       <div>TaskList</div>
@@ -69,7 +74,7 @@ export const TaskList = () => {
               onChange={() => toggle(task)}
             />
             {task.title}
-            <button>❌</button>
+            <button onClick={() => remove(task)}>❌</button>
           </li>
         ))}
       </ul>
