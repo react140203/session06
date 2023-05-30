@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-export const TaskInput = ({ add }: any) => {
+interface TaskInputProps {
+  add: (title: string) => void;
+}
+export const TaskInput = ({ add }: TaskInputProps) => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const addFnc = () => {
     add(newTaskTitle);

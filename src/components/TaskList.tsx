@@ -59,6 +59,7 @@ export const TaskList = () => {
       {/* <input onChange={(e) => setNewTaskTitle(e.target.value)}></input> */}
 
       <TaskInput add={add}></TaskInput>
+
       <ul>
         {taskList.map((task) => (
           <li key={task.id}>
