@@ -14,7 +14,10 @@ export const TaskList = () => {
       <div>TaskList</div>
       <ul>
         {taskList.map((x) => (
-          <li>{x.title}</li>
+          <li key={x.id}>
+            <input type="checkbox" checked={x.done} />
+            {x.title}
+          </li>
         ))}
       </ul>
     </>
