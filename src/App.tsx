@@ -8,8 +8,10 @@ import { TaskList } from "./components/task/TaskList";
 function App() {
   return (
     <>
-      <Counter />
-      <TaskList></TaskList>
+      <div className="container">
+        <Counter />
+        <TaskList></TaskList>
+      </div>
     </>
   );
 }
