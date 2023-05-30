@@ -50,9 +50,11 @@ export const TaskList = () => {
   };
 
   const remove = (task: ITask) => {
-    const newList = taskList.filter((x) => x.id !== task.id);
-    setTaskList(newList);
+    if (confirm("are you sure"))
+      setTaskList(taskList.filter((x) => x.id !== task.id));
   };
+
+  //tamrin 1: rename kardan title yek task
 
   return (
     <>
