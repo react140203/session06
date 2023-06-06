@@ -3,7 +3,6 @@ import { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 
 export const PostList = () => {
-  const [counter, setCounter] = useState(0);
   const [posts, setPosts] = useState<any>([]);
   const [total, setTotal] = useState(1);
   const [page, setPage] = useState(1);
