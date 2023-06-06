@@ -4,7 +4,7 @@ import "./App.css";
 // webapp -> ant design
 import { Counter } from "./components/Counter";
 import { TaskList } from "./components/task/TaskList";
-import { PostList } from "./components/post/PostList";
+import { PostList } from "./components/pages/PostList";
 import { useState } from "react";
 
 function App() {
