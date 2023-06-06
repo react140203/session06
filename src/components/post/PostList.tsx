@@ -49,16 +49,16 @@ export const PostList = () => {
     };
   }, [page]); //dependency
 
-  const pages = [];
-  for (let i = 1; i <= total / 10; i++) {
-    pages.push(
-      <li className={page === i ? "page-item active" : "page-item"}>
-        <a className="page-link" onClick={() => setPage(i)} href="#">
-          {i}
-        </a>
-      </li>
-    );
-  }
+  // const pages = [];
+  // for (let i = 1; i <= total / 10; i++) {
+  //   pages.push(
+  //     <li className={page === i ? "page-item active" : "page-item"}>
+  //       <a className="page-link" onClick={() => setPage(i)} href="#">
+  //         {i}
+  //       </a>
+  //     </li>
+  //   );
+  // }
   return (
     <>
       <div>PostList</div>
@@ -70,7 +70,18 @@ export const PostList = () => {
               Previous
             </a>
           </li>
-          {pages}
+          {total > 10 &&
+            new Array(total / 10).fill(0).map((x, i) => (
+              <li className={page === i + 1 ? "page-item active" : "page-item"}>
+                <a
+                  className="page-link"
+                  onClick={() => setPage(i + 1)}
+                  href="#"
+                >
+                  {i + 1}
+                </a>
+              </li>
+            ))}
           <li className="page-item">
             <a className="page-link" href="#">
               Next
