@@ -14,7 +14,7 @@ export const PhotoList = () => {
     3. Custom Hook
   */
 
-  const { loading, posts, setPage, total } = useFetchData("photos");
+  const { loading, data, setPage, total } = useFetchData("photos");
 
   const columns: ColumnsType<any> = [
     {
@@ -44,7 +44,7 @@ export const PhotoList = () => {
       />
       <Table
         columns={columns}
-        dataSource={posts}
+        dataSource={data}
         pagination={false}
         loading={loading}
       />

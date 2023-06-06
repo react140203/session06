@@ -15,7 +15,7 @@ export const PostList = () => {
     3. Custom Hook
   */
 
-  const { loading, posts, setPage, total } = useFetchData("posts");
+  const { loading, data, setPage, total } = useFetchData("posts");
 
   const columns: ColumnsType<any> = [
     {
@@ -49,7 +49,7 @@ export const PostList = () => {
       />
       <Table
         columns={columns}
-        dataSource={posts}
+        dataSource={data}
         pagination={false}
         loading={loading}
       />

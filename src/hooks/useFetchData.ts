@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useFetchData = (enpoint: string) => {
-  const [posts, setPosts] = useState<any>([]);
+  const [data, setData] = useState<any>([]);
   const [total, setTotal] = useState(1);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -16,12 +16,12 @@ export const useFetchData = (enpoint: string) => {
 
       setLoading(false);
       setTotal(+(resp.headers.get("X-Total-Count") || "0"));
-      setPosts(json);
+      setData(json);
     }
     loadData();
 
     //IIFE
   }, [page]);
 
-  return { page, setPage, total, posts, loading };
+  return { page, setPage, total, data, loading };
 };
