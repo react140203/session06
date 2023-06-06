@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { ITask } from "./TaskList";
 
 interface TaskItemProps {
@@ -6,7 +6,7 @@ interface TaskItemProps {
   remove: (task: ITask) => void;
   toggle: (task: ITask) => void;
 }
-export const TaskItem = ({ task, remove, toggle }: TaskItemProps) => {
+export const TaskItem = memo(({ task, remove, toggle }: TaskItemProps) => {
   return (
     <li>
       <input
@@ -18,4 +18,4 @@ export const TaskItem = ({ task, remove, toggle }: TaskItemProps) => {
       <button onClick={() => remove(task)}>❌</button>
     </li>
   );
-};
+});

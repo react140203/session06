@@ -1,5 +1,5 @@
 //rafc <- snippet es7+
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskItem } from "./TaskItem";
 
@@ -30,7 +30,7 @@ export const TaskList = () => {
   //   console.log(x);
 
   const [taskList, setTaskList] = useState(taskListInit);
-  const toggle = (task: ITask) => {
+  const toggleX = (task: ITask) => {
     task.done = !task.done;
     //shallow copy
     // 1. setTaskList(taskList.concat());
@@ -38,17 +38,36 @@ export const TaskList = () => {
     setTaskList([...taskList]); //Operator Rest
   };
 
+  const toggle = useCallback(
+    (task: ITask) => {
+      task.done = !task.done;
+      //shallow copy
+      // 1. setTaskList(taskList.concat());
+      // 2. setTaskList(taskList.slice());
+      setTaskList([...taskList]); //Operator Rest
+    },
+    [taskList]
+  );
+
+  const removeX = (task: ITask) => {
+    if (confirm("are you sure"))
+      setTaskList(taskList.filter((x) => x.id !== task.id));
+  };
+
+  const remove = useCallback(
+    (task: ITask) => {
+      if (confirm("are you sure"))
+        setTaskList(taskList.filter((x) => x.id !== task.id));
+    },
+    [taskList]
+  );
+
   const add = (title: string) => {
     //console.log(newTaskTitle);
     // taskList.push({ id: Math.random(), title: newTaskTitle, done: false });
     // setTaskList([...taskList]);
 
     setTaskList([...taskList, { id: Math.random(), title, done: false }]);
-  };
-
-  const remove = (task: ITask) => {
-    if (confirm("are you sure"))
-      setTaskList(taskList.filter((x) => x.id !== task.id));
   };
 
   //tamrin 1: rename kardan title yek task
