@@ -14,7 +14,7 @@ export const PhotoList = () => {
     3. Custom Hook
   */
 
-  const { loading, data, setPage, total } = useFetchData("photos");
+  const { loading, data, setPage, total, setPageSize } = useFetchData("photos");
 
   const columns: ColumnsType<any> = [
     {
@@ -40,7 +40,10 @@ export const PhotoList = () => {
       <Pagination
         defaultCurrent={1}
         total={total}
-        onChange={(page) => setPage(page)}
+        onChange={(page, pageSize) => {
+          setPage(page);
+          setPageSize(pageSize);
+        }}
       />
       <Table
         columns={columns}

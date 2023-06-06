@@ -1,6 +1,5 @@
 import { Pagination, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
-import React, { useEffect, useState } from "react";
 import { useFetchData } from "../../hooks/useFetchData";
 
 // function Xyz(a: number, b: number){
@@ -45,7 +44,7 @@ export const PostList = () => {
       <Pagination
         defaultCurrent={1}
         total={total}
-        onChange={(page) => setPage(page)}
+        onChange={(page, pageSize) => setPage(page)}
       />
       <Table
         columns={columns}
