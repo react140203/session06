@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useFetchData = (enpoint: string) => {
+export const useFetchData = (endpoint: string) => {
   const [data, setData] = useState<any>([]);
   const [total, setTotal] = useState(1);
   const [page, setPage] = useState(1);
@@ -8,21 +8,18 @@ export const useFetchData = (enpoint: string) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadData() {
+    (async function () {
       setLoading(true);
       const resp = await fetch(
-        `https://jsonplaceholder.ir/${enpoint}?_limit=${pageSize}&_page=${page}`
+        `https://jsonplaceholder.ir/${endpoint}?_limit=${pageSize}&_page=${page}`
       );
       const json = await resp.json();
 
       setLoading(false);
       setTotal(+(resp.headers.get("X-Total-Count") || "0"));
       setData(json);
-    }
-    loadData();
-
-    //IIFE
-  }, [enpoint, page, pageSize]);
+    })();
+  }, [endpoint, page, pageSize]);
 
   return { page, setPage, total, data, loading, setPageSize };
 };

@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { ITask } from "./TaskList";
+import { AppContext } from "../../appContext";
 
 interface TaskItemProps {
   task: ITask;
@@ -7,6 +8,7 @@ interface TaskItemProps {
   toggle: (task: ITask) => void;
 }
 export const TaskItem = memo(({ task, remove, toggle }: TaskItemProps) => {
+  const { color } = useContext(AppContext);
   return (
     <li>
       <input
@@ -14,7 +16,7 @@ export const TaskItem = memo(({ task, remove, toggle }: TaskItemProps) => {
         checked={task.done}
         onChange={() => toggle(task)}
       />
-      {task.title}
+      <em style={{ color }}>{task.title}</em>
       <button onClick={() => remove(task)}>❌</button>
     </li>
   );

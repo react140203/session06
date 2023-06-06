@@ -7,16 +7,22 @@ import { TaskList } from "./components/task/TaskList";
 import { PostList } from "./components/pages/PostList";
 import { useState } from "react";
 import { PhotoList } from "./components/pages/PhotoList";
+import { SelectColor } from "./components/SelectColor";
+import { AppContext } from "./appContext";
 
 function App() {
   const [toggle, setToggle] = useState(true);
+  const [color, setColor] = useState("red");
   return (
     <>
-      <button onClick={() => setToggle(!toggle)}>toggle posts</button>
-      {toggle && <PostList></PostList>}
-      <PhotoList></PhotoList>
-      <Counter />
-      <TaskList></TaskList>
+      <AppContext.Provider value={{ color, setColor }}>
+        <SelectColor />
+        <button onClick={() => setToggle(!toggle)}>toggle posts</button>
+        {toggle && <PostList></PostList>}
+        <PhotoList></PhotoList>
+        <Counter />
+        <TaskList></TaskList>
+      </AppContext.Provider>
     </>
   );
 }
