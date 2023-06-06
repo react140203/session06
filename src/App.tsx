@@ -9,20 +9,23 @@ import { useState } from "react";
 import { PhotoList } from "./components/pages/PhotoList";
 import { SelectColor } from "./components/SelectColor";
 import { AppContext } from "./appContext";
+import { AppLayout } from "./components/AppLayout";
 
 function App() {
   const [toggle, setToggle] = useState(true);
   const [color, setColor] = useState("red");
   return (
     <>
-      <AppContext.Provider value={{ color, setColor }}>
-        <SelectColor />
-        <button onClick={() => setToggle(!toggle)}>toggle posts</button>
-        {toggle && <PostList></PostList>}
-        <PhotoList></PhotoList>
-        <Counter />
-        <TaskList></TaskList>
-      </AppContext.Provider>
+      <AppLayout>
+        <AppContext.Provider value={{ color, setColor }}>
+          <SelectColor />
+          <button onClick={() => setToggle(!toggle)}>toggle posts</button>
+          {toggle && <PostList></PostList>}
+          <PhotoList></PhotoList>
+          <Counter />
+          <TaskList></TaskList>
+        </AppContext.Provider>
+      </AppLayout>
     </>
   );
 }
