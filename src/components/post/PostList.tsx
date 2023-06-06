@@ -49,6 +49,16 @@ export const PostList = () => {
     };
   }, [page]); //dependency
 
+  const pages = [];
+  for (let i = 1; i <= total / 10; i++) {
+    pages.push(
+      <li className={page === i ? "page-item active" : "page-item"}>
+        <a className="page-link" onClick={() => setPage(i)} href="#">
+          {i}
+        </a>
+      </li>
+    );
+  }
   return (
     <>
       <div>PostList</div>
@@ -60,16 +70,7 @@ export const PostList = () => {
               Previous
             </a>
           </li>
-          <li className="page-item">
-            <a className="page-link" onClick={() => setPage(1)} href="#">
-              1
-            </a>
-          </li>
-          <li className="page-item active">
-            <a className="page-link" onClick={() => setPage(2)} href="#">
-              2
-            </a>
-          </li>
+          {pages}
           <li className="page-item">
             <a className="page-link" href="#">
               Next
