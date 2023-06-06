@@ -1,3 +1,5 @@
+import { Pagination, Table } from "antd";
+import { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 
 export const PostList = () => {
@@ -32,7 +34,7 @@ export const PostList = () => {
 
     async function loadData() {
       const resp = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`
+        `https://jsonplaceholder.ir/posts?_limit=10&_page=${page}`
       );
       const json = await resp.json();
 
@@ -59,12 +61,39 @@ export const PostList = () => {
   //     </li>
   //   );
   // }
+  const columns: ColumnsType<any> = [
+    {
+      title: "Id",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "User Id",
+      dataIndex: "userId",
+      key: "userId",
+    },
+    {
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "Body",
+      dataIndex: "body",
+      key: "body",
+    },
+  ];
   return (
     <>
       <div>PostList</div>
       posts: {posts.length}
       <nav aria-label="Page navigation example">
-        <ul className="pagination">
+        <Pagination
+          defaultCurrent={1}
+          total={total}
+          onChange={(page) => setPage(page)}
+        />
+        {/* <ul className="pagination">
           <li className="page-item">
             <a className="page-link" href="#">
               Previous
@@ -87,9 +116,9 @@ export const PostList = () => {
               Next
             </a>
           </li>
-        </ul>
+        </ul> */}
       </nav>
-      <table className="table table-striped">
+      {/* <table className="table table-striped">
         <thead>
           <th>id</th>
           <th>userId</th>
@@ -106,7 +135,8 @@ export const PostList = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
+      <Table columns={columns} dataSource={posts} pagination={false} />
       <button onClick={() => setCounter(counter + 1)}>{counter}</button>
     </>
   );
