@@ -14,6 +14,7 @@ import { SelectColor } from "./SelectColor";
 import { Counter } from "./Counter";
 import { TaskList } from "./task/TaskList";
 import { NotFound } from "./pages/NotFound";
+import { PostDetails } from "./pages/PostDetails";
 
 const { Header, Sider, Content } = Layout;
 
@@ -97,8 +98,9 @@ export const AppLayout = () => {
                 </>
               }
             />
-            <Route path="photos" element={<PhotoList></PhotoList>} />
             <Route path="posts" element={<PostList></PostList>} />
+            <Route path="posts/:id" element={<PostDetails></PostDetails>} />
+            <Route path="photos" element={<PhotoList></PhotoList>} />
             <Route path="color" element={<SelectColor></SelectColor>} />
             <Route path="counter" element={<Counter></Counter>} />
             <Route path="tasks" element={<TaskList></TaskList>} />
