@@ -7,6 +7,9 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { PhotoList } from "./pages/PhotoList";
+import { PostList } from "./pages/PostList";
 
 const { Header, Sider, Content } = Layout;
 
@@ -15,30 +18,32 @@ export const AppLayout = ({ children }: any) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate();
 
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <Menu
+          onClick={(info) => navigate(info.key)}
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
           items={[
             {
-              key: "1",
+              key: "/",
               icon: <UserOutlined />,
-              label: "nav 1",
+              label: "Home",
             },
             {
-              key: "2",
+              key: "/posts",
               icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              label: "Posts",
             },
             {
-              key: "3",
+              key: "/photos",
               icon: <UploadOutlined />,
-              label: "nav 3",
+              label: "Photos",
             },
           ]}
         />
@@ -64,7 +69,24 @@ export const AppLayout = ({ children }: any) => {
             background: colorBgContainer,
           }}
         >
-          {children}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <h1>Home</h1>
+                </>
+              }
+            />
+            <Route path="/photos" element={<PhotoList></PhotoList>} />
+            <Route path="/posts" element={<PostList></PostList>} />
+            {/* 
+            <SelectColor />
+            
+            
+            <Counter />
+            <TaskList></TaskList> */}
+          </Routes>
         </Content>
       </Layout>
     </Layout>

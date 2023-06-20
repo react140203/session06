@@ -6,6 +6,7 @@ import { Counter } from "./components/Counter";
 import { TaskList } from "./components/task/TaskList";
 import { PostList } from "./components/pages/PostList";
 import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { PhotoList } from "./components/pages/PhotoList";
 import { SelectColor } from "./components/SelectColor";
 import { AppContext } from "./appContext";
@@ -16,16 +17,11 @@ function App() {
   const [color, setColor] = useState("red");
   return (
     <>
-      <AppLayout>
+      <BrowserRouter>
         <AppContext.Provider value={{ color, setColor }}>
-          <SelectColor />
-          <button onClick={() => setToggle(!toggle)}>toggle posts</button>
-          {toggle && <PostList></PostList>}
-          <PhotoList></PhotoList>
-          <Counter />
-          <TaskList></TaskList>
+          <AppLayout></AppLayout>
         </AppContext.Provider>
-      </AppLayout>
+      </BrowserRouter>
     </>
   );
 }
