@@ -7,12 +7,13 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { PhotoList } from "./pages/PhotoList";
 import { PostList } from "./pages/PostList";
 import { SelectColor } from "./SelectColor";
 import { Counter } from "./Counter";
 import { TaskList } from "./task/TaskList";
+import { NotFound } from "./pages/NotFound";
 
 const { Header, Sider, Content } = Layout;
 
@@ -89,18 +90,20 @@ export const AppLayout = ({ children }: any) => {
         >
           <Routes>
             <Route
-              path="/"
+              path=""
               element={
                 <>
                   <h1>Home</h1>
                 </>
               }
             />
-            <Route path="/photos" element={<PhotoList></PhotoList>} />
-            <Route path="/posts" element={<PostList></PostList>} />
-            <Route path="/color" element={<SelectColor></SelectColor>} />
-            <Route path="/counter" element={<Counter></Counter>} />
-            <Route path="/tasks" element={<TaskList></TaskList>} />
+            <Route path="photos" element={<PhotoList></PhotoList>} />
+            <Route path="posts" element={<PostList></PostList>} />
+            <Route path="color" element={<SelectColor></SelectColor>} />
+            <Route path="counter" element={<Counter></Counter>} />
+            <Route path="tasks" element={<TaskList></TaskList>} />
+            <Route path="404" element={<NotFound></NotFound>} />
+            <Route path="*" element={<Navigate to="/404"></Navigate>} />
           </Routes>
         </Content>
       </Layout>
