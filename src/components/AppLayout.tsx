@@ -32,7 +32,7 @@ export const AppLayout = () => {
           onClick={(info) => navigate(info.key)}
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["/"]}
           items={[
             {
               key: "/",
