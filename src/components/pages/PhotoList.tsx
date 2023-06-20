@@ -6,6 +6,13 @@ import { useFetchData } from "../../hooks/useFetchData";
 //   const counter = useState(1)
 //   return a+ b
 // }
+export interface PhotoModel {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+}
 
 export const PhotoList = () => {
   /*
@@ -14,9 +21,10 @@ export const PhotoList = () => {
     3. Custom Hook
   */
 
-  const { loading, data, setPage, total, setPageSize } = useFetchData("photos");
+  const { loading, data, setPage, total, setPageSize } =
+    useFetchData<PhotoModel>("photos");
 
-  const columns: ColumnsType<any> = [
+  const columns: ColumnsType<PhotoModel> = [
     {
       title: "Id",
       dataIndex: "id",
