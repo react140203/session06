@@ -1,10 +1,8 @@
 import { Button, Pagination, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useFetchData } from "../../hooks/useFetchData";
-import { PhotoModel } from "./PhotoList";
 import { SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { Header } from "../Header";
 
 // function Xyz(a: number, b: number){
@@ -25,7 +23,7 @@ export const PostList = () => {
   */
 
   const { loading, data, setPage, total, setPageSize } =
-    useFetchData<PhotoModel>("posts");
+    useFetchData<PostModel>("posts");
   const navigate = useNavigate();
 
   const columns: ColumnsType<PostModel> = [

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { AppContext } from "../appContext";
 
 export const SelectColor = () => {

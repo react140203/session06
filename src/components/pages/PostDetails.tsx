@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostModel } from "./PostList";
 import Descriptions from "antd/es/descriptions";
 import { Button } from "antd";
-import { Helmet } from "react-helmet-async";
 import { Header } from "../Header";
 
 export const PostDetails = () => {
@@ -11,7 +10,7 @@ export const PostDetails = () => {
   const [model, setModel] = useState<PostModel>();
   const navigate = useNavigate();
   useEffect(() => {
-    //iife
+    //
     (async () => {
       const resp = await fetch(`https://jsonplaceholder.ir/posts/${params.id}`);
       const data = await resp.json();
