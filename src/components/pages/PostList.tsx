@@ -4,6 +4,8 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { PhotoModel } from "./PhotoList";
 import { SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { Header } from "../Header";
 
 // function Xyz(a: number, b: number){
 //   const counter = useState(1)
@@ -60,6 +62,7 @@ export const PostList = () => {
   ];
   return (
     <>
+      <Header title="Post List"></Header>
       <div>PostList</div>
       <Pagination
         defaultCurrent={1}

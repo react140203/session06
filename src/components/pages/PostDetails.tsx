@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PostModel } from "./PostList";
 import Descriptions from "antd/es/descriptions";
 import { Button } from "antd";
+import { Helmet } from "react-helmet-async";
+import { Header } from "../Header";
 
 export const PostDetails = () => {
   const params = useParams();
@@ -19,6 +21,7 @@ export const PostDetails = () => {
 
   return (
     <>
+      <Header title="Post Details"></Header>
       <Descriptions title="Post Info" bordered>
         <Descriptions.Item label="Id">{model?.id}</Descriptions.Item>
         <Descriptions.Item label="User Id">{model?.userId}</Descriptions.Item>

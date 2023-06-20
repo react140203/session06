@@ -6,16 +6,19 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AppContext } from "./appContext";
 import { AppLayout } from "./components/AppLayout";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   const [color, setColor] = useState("red");
   return (
     <>
-      <BrowserRouter>
-        <AppContext.Provider value={{ color, setColor }}>
-          <AppLayout />
-        </AppContext.Provider>
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <AppContext.Provider value={{ color, setColor }}>
+            <AppLayout />
+          </AppContext.Provider>
+        </BrowserRouter>
+      </HelmetProvider>
     </>
   );
 }
