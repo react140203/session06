@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -14,7 +14,13 @@ import { SelectColor } from "./SelectColor";
 import { Counter } from "./Counter";
 import { TaskList } from "./task/TaskList";
 import { NotFound } from "./pages/NotFound";
-import { PostDetails } from "./pages/PostDetails";
+// import { PostDetails } from "./pages/PostDetails";
+
+const PostDetails = lazy(() =>
+  import("./pages/PostDetails").then(({ PostDetails }) => ({
+    default: PostDetails,
+  }))
+);
 
 const { Header, Sider, Content } = Layout;
 
@@ -99,7 +105,14 @@ export const AppLayout = () => {
               }
             />
             <Route path="posts" element={<PostList></PostList>} />
-            <Route path="posts/:id" element={<PostDetails></PostDetails>} />
+            <Route
+              path="posts/:id"
+              element={
+                <Suspense fallback={<>Loading</>}>
+                  <PostDetails />
+                </Suspense>
+              }
+            />
             <Route path="photos" element={<PhotoList></PhotoList>} />
             <Route path="color" element={<SelectColor></SelectColor>} />
             <Route path="counter" element={<Counter></Counter>} />
