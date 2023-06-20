@@ -10,6 +10,9 @@ import { Layout, Menu, Button, theme } from "antd";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { PhotoList } from "./pages/PhotoList";
 import { PostList } from "./pages/PostList";
+import { SelectColor } from "./SelectColor";
+import { Counter } from "./Counter";
+import { TaskList } from "./task/TaskList";
 
 const { Header, Sider, Content } = Layout;
 
@@ -44,6 +47,21 @@ export const AppLayout = ({ children }: any) => {
               key: "/photos",
               icon: <UploadOutlined />,
               label: "Photos",
+            },
+            {
+              key: "/color",
+              icon: <UploadOutlined />,
+              label: "Color",
+            },
+            {
+              key: "/tasks",
+              icon: <UploadOutlined />,
+              label: "Tasks",
+            },
+            {
+              key: "/counter",
+              icon: <UploadOutlined />,
+              label: "Counter",
             },
           ]}
         />
@@ -80,12 +98,9 @@ export const AppLayout = ({ children }: any) => {
             />
             <Route path="/photos" element={<PhotoList></PhotoList>} />
             <Route path="/posts" element={<PostList></PostList>} />
-            {/* 
-            <SelectColor />
-            
-            
-            <Counter />
-            <TaskList></TaskList> */}
+            <Route path="/color" element={<SelectColor></SelectColor>} />
+            <Route path="/counter" element={<Counter></Counter>} />
+            <Route path="/tasks" element={<TaskList></TaskList>} />
           </Routes>
         </Content>
       </Layout>
