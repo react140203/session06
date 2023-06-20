@@ -11,14 +11,21 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { PhotoList } from "./pages/PhotoList";
 import { PostList } from "./pages/PostList";
 import { SelectColor } from "./SelectColor";
-import { Counter } from "./Counter";
-import { TaskList } from "./task/TaskList";
 import { NotFound } from "./pages/NotFound";
-// import { PostDetails } from "./pages/PostDetails";
 
 const PostDetails = lazy(() =>
   import("./pages/PostDetails").then(({ PostDetails }) => ({
     default: PostDetails,
+  }))
+);
+const TaskList = lazy(() =>
+  import("./task/TaskList").then(({ TaskList }) => ({
+    default: TaskList,
+  }))
+);
+const Counter = lazy(() =>
+  import("./Counter").then(({ Counter }) => ({
+    default: Counter,
   }))
 );
 
@@ -115,8 +122,22 @@ export const AppLayout = () => {
             />
             <Route path="photos" element={<PhotoList></PhotoList>} />
             <Route path="color" element={<SelectColor></SelectColor>} />
-            <Route path="counter" element={<Counter></Counter>} />
-            <Route path="tasks" element={<TaskList></TaskList>} />
+            <Route
+              path="counter"
+              element={
+                <Suspense fallback={<>Loading</>}>
+                  <Counter />
+                </Suspense>
+              }
+            />
+            <Route
+              path="tasks"
+              element={
+                <Suspense fallback={<>Loading</>}>
+                  <TaskList />
+                </Suspense>
+              }
+            />
             <Route path="404" element={<NotFound></NotFound>} />
             <Route path="*" element={<Navigate to="/404"></Navigate>} />
           </Routes>
