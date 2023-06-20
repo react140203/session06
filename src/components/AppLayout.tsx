@@ -17,7 +17,7 @@ import { NotFound } from "./pages/NotFound";
 
 const { Header, Sider, Content } = Layout;
 
-export const AppLayout = ({ children }: any) => {
+export const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },

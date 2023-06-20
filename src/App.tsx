@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <AppContext.Provider value={{ color, setColor }}>
-          <AppLayout></AppLayout>
+          <AppLayout />
         </AppContext.Provider>
       </BrowserRouter>
     </>
