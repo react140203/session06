@@ -46,6 +46,7 @@ export const PhotoList = () => {
         }}
       />
       <Table
+        rowKey="id"
         columns={columns}
         dataSource={data}
         pagination={false}

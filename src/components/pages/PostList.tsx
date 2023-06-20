@@ -47,6 +47,7 @@ export const PostList = () => {
         onChange={(page, pageSize) => setPage(page)}
       />
       <Table
+        rowKey="id"
         columns={columns}
         dataSource={data}
         pagination={false}
