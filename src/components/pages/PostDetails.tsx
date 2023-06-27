@@ -5,6 +5,7 @@ import Descriptions from "antd/es/descriptions";
 import { Button } from "antd";
 import { Header } from "../Header";
 import axios from "axios";
+import { appApi } from "../../utils/appApi";
 
 export const PostDetails = () => {
   const params = useParams();
@@ -13,9 +14,7 @@ export const PostDetails = () => {
   useEffect(() => {
     //
     (async () => {
-      const resp = await axios.get(
-        `https://jsonplaceholder.ir/posts/${params.id}`
-      );
+      const resp = await appApi.get(`posts/${params.id}`);
       setModel(resp.data);
     })();
   }, [params]);

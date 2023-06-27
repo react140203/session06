@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { appApi } from "../../../utils/appApi";
 
 interface AuthState {
   loading: boolean;
@@ -22,10 +23,7 @@ interface LoginData {
 export const login = createAsyncThunk(
   "auth/login",
   async (loginData: LoginData) => {
-    const resp = await axios.post(
-      "http://localhost:3010/auth/login",
-      loginData
-    );
+    const resp = await appApi.post("auth/login", loginData);
     return { token: resp.data.token, email: loginData.email };
   }
 );

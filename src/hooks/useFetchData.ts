@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { appApi } from "../utils/appApi";
+import { useAppSelector } from "../redux/hooks";
 
 export const useFetchData = <T>(endpoint: string) => {
   const [data, setData] = useState<T[]>([]);
@@ -11,8 +13,8 @@ export const useFetchData = <T>(endpoint: string) => {
   useEffect(() => {
     (async function () {
       setLoading(true);
-      const resp = await axios.get(
-        `https://jsonplaceholder.ir/${endpoint}?_limit=${pageSize}&_page=${page}`
+      const resp = await appApi.get(
+        `${endpoint}?_limit=${pageSize}&_page=${page}`
       );
 
       setLoading(false);
