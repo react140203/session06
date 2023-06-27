@@ -8,7 +8,6 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
 const { Header, Sider, Content } = Layout;
 
 export const AppLayout = () => {
@@ -17,12 +16,6 @@ export const AppLayout = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const navigate = useNavigate();
-  const auth = useAppSelector((s) => s.auth);
-  useEffect(() => {
-    if (!auth.token) {
-      navigate("/login");
-    }
-  }, [auth]);
 
   return (
     <Layout>
