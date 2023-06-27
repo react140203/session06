@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { memo, useState } from "react";
+import { add } from "./TaskList.slice";
+import { useAppDispatch } from "../../redux/hooks";
 
-interface TaskInputProps {
-  add: (title: string) => void;
-}
-export const TaskInput = ({ add }: TaskInputProps) => {
+export const TaskInput = memo(() => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
+  const dispatch = useAppDispatch();
   const addFnc = () => {
-    add(newTaskTitle);
+    dispatch(add(newTaskTitle));
     setNewTaskTitle("");
   };
   return (
@@ -18,4 +18,4 @@ export const TaskInput = ({ add }: TaskInputProps) => {
       <button onClick={addFnc}>➕</button>
     </>
   );
-};
+});

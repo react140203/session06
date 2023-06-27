@@ -3,15 +3,17 @@ import { useState, useCallback } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskItem } from "./TaskItem";
 import { ITask } from "./ITask";
+import { useAppSelector } from "../../redux/hooks";
 
-const taskListInit = [
-  { id: 1, title: "One", done: true },
-  { id: 2, title: "iki", done: false },
-  { id: 3, title: "se", done: false },
-  { id: 4, title: "quad", done: true },
-]; //ref1;
+// const taskListInit = [
+//   { id: 1, title: "One", done: true },
+//   { id: 2, title: "iki", done: false },
+//   { id: 3, title: "se", done: false },
+//   { id: 4, title: "quad", done: true },
+// ]; //ref1;
 
 export const TaskList = () => {
+  const taskList = useAppSelector((s) => s.taskList);
   //   //value, reference
   //   const x = [1, 2, 3]; //ref1
   //   const y = [1, 2, 3]; //ref2
@@ -25,34 +27,34 @@ export const TaskList = () => {
   //   x[0] = 0;
   //   console.log(x);
 
-  const [taskList, setTaskList] = useState(taskListInit);
+  // const [taskList, setTaskList] = useState(taskListInit);
 
-  const toggle = useCallback(
-    (task: ITask) => {
-      task.done = !task.done;
-      //shallow copy
-      // 1. setTaskList(taskList.concat());
-      // 2. setTaskList(taskList.slice());
-      setTaskList([...taskList]); //Operator Rest
-    },
-    [taskList]
-  );
+  // const toggle = useCallback(
+  //   (task: ITask) => {
+  //     task.done = !task.done;
+  //     //shallow copy
+  //     // 1. setTaskList(taskList.concat());
+  //     // 2. setTaskList(taskList.slice());
+  //     setTaskList([...taskList]); //Operator Rest
+  //   },
+  //   [taskList]
+  // );
 
-  const remove = useCallback(
-    (task: ITask) => {
-      if (confirm("are you sure"))
-        setTaskList(taskList.filter((x) => x.id !== task.id));
-    },
-    [taskList]
-  );
+  // const remove = useCallback(
+  //   (task: ITask) => {
+  //     if (confirm("are you sure"))
+  //       setTaskList(taskList.filter((x) => x.id !== task.id));
+  //   },
+  //   [taskList]
+  // );
 
-  const add = (title: string) => {
-    //console.log(newTaskTitle);
-    // taskList.push({ id: Math.random(), title: newTaskTitle, done: false });
-    // setTaskList([...taskList]);
+  // const add = (title: string) => {
+  //   //console.log(newTaskTitle);
+  //   // taskList.push({ id: Math.random(), title: newTaskTitle, done: false });
+  //   // setTaskList([...taskList]);
 
-    setTaskList([...taskList, { id: Math.random(), title, done: false }]);
-  };
+  //   setTaskList([...taskList, { id: Math.random(), title, done: false }]);
+  // };
 
   //tamrin 1: rename kardan title yek task
 
@@ -62,11 +64,11 @@ export const TaskList = () => {
       {/* un-controlled */}
       {/* <input onChange={(e) => setNewTaskTitle(e.target.value)}></input> */}
 
-      <TaskInput add={add}></TaskInput>
+      <TaskInput></TaskInput>
 
       <ul>
-        {taskList.map((task) => (
-          <TaskItem key={task.id} task={task} remove={remove} toggle={toggle} />
+        {taskList.value.map((task) => (
+          <TaskItem key={task.id} task={task} />
         ))}
       </ul>
     </>
