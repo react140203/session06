@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const useFetchData = <T>(endpoint: string) => {
@@ -10,14 +11,13 @@ export const useFetchData = <T>(endpoint: string) => {
   useEffect(() => {
     (async function () {
       setLoading(true);
-      const resp = await fetch(
+      const resp = await axios.get(
         `https://jsonplaceholder.ir/${endpoint}?_limit=${pageSize}&_page=${page}`
       );
-      const json = await resp.json();
 
       setLoading(false);
-      setTotal(+(resp.headers.get("X-Total-Count") || "0"));
-      setData(json);
+      setTotal(+(resp.headers["X-Total-Count"] || "0"));
+      setData(resp.data);
     })();
   }, [endpoint, page, pageSize]);
 
