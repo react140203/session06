@@ -1,5 +1,5 @@
 import { memo, useContext } from "react";
-import { ITask } from "./TaskList";
+import { ITask } from "./ITask";
 import { AppContext } from "../../appContext";
 
 interface TaskItemProps {

@@ -2,12 +2,8 @@
 import { useState, useCallback } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskItem } from "./TaskItem";
+import { ITask } from "./ITask";
 
-export interface ITask {
-  id: number;
-  title: string;
-  done: boolean;
-}
 const taskListInit = [
   { id: 1, title: "One", done: true },
   { id: 2, title: "iki", done: false },
