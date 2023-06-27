@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface AuthState {
   loading: boolean;
@@ -13,6 +14,44 @@ const initialState: AuthState = {
   email: "",
 };
 
-const authSlice = createSlice({ name: "auth", initialState, reducers: {} });
+interface LoginData {
+  email: string;
+  password: string;
+}
 
+export const login = createAsyncThunk(
+  "auth/login",
+  async (loginData: LoginData) => {
+    const resp = await axios.post(
+      "http://localhost:3010/auth/login",
+      loginData
+    );
+    return { token: resp.data.token, email: loginData.email };
+  }
+);
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    // login: (state, action) => {},
+  },
+  extraReducers: (builder) => {
+    builder.addCase(login.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(login.rejected, (state) => {
+      state.loading = false;
+      state.token = "";
+      state.email = "";
+    });
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.loading = false;
+      state.token = action.payload.token;
+      state.email = action.payload.email;
+    });
+  },
+});
+
+// export const {} = authSlice.actions;
 export default authSlice.reducer;

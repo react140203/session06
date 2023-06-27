@@ -1,8 +1,22 @@
-import { Button, Checkbox, Form, Input, Layout } from "antd";
+import { Button, Form, Input, Layout } from "antd";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { login } from "./auth.slice";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((s) => s.auth);
+  useEffect(() => {
+    if (auth.token) {
+      navigate("/");
+    }
+  }, [auth]);
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
+    dispatch(login({ email: values.email, password: values.password }));
   };
 
   return (
@@ -13,7 +27,7 @@ export const Login = () => {
             name="basic"
             style={{ maxWidth: 600 }}
             onFinish={onFinish}
-            autoComplete="off"
+            // autoComplete="off"
           >
             <Form.Item
               label="Email"
