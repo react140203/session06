@@ -4,6 +4,7 @@ import { PostModel } from "./PostList";
 import Descriptions from "antd/es/descriptions";
 import { Button } from "antd";
 import { Header } from "../Header";
+import axios from "axios";
 
 export const PostDetails = () => {
   const params = useParams();
@@ -12,9 +13,10 @@ export const PostDetails = () => {
   useEffect(() => {
     //
     (async () => {
-      const resp = await fetch(`https://jsonplaceholder.ir/posts/${params.id}`);
-      const data = await resp.json();
-      setModel(data);
+      const resp = await axios.get(
+        `https://jsonplaceholder.ir/posts/${params.id}`
+      );
+      setModel(resp.data);
     })();
   }, [params]);
 
