@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -7,28 +7,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { PhotoList } from "./pages/PhotoList";
-import { PostList } from "./pages/PostList";
-import { SelectColor } from "./SelectColor";
-import { NotFound } from "./pages/NotFound";
-
-const PostDetails = lazy(() =>
-  import("./pages/PostDetails").then(({ PostDetails }) => ({
-    default: PostDetails,
-  }))
-);
-const TaskList = lazy(() =>
-  import("./task/TaskList").then(({ TaskList }) => ({
-    default: TaskList,
-  }))
-);
-const Counter = lazy(() =>
-  import("./Counter").then(({ Counter }) => ({
-    default: Counter,
-  }))
-);
-
+import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 export const AppLayout = () => {
@@ -52,6 +31,11 @@ export const AppLayout = () => {
               key: "/",
               icon: <UserOutlined />,
               label: "Home",
+            },
+            {
+              key: "/login",
+              icon: <UserOutlined />,
+              label: "Login",
             },
             {
               key: "/posts",
@@ -102,45 +86,7 @@ export const AppLayout = () => {
             background: colorBgContainer,
           }}
         >
-          <Routes>
-            <Route
-              path=""
-              element={
-                <>
-                  <h1>Home</h1>
-                </>
-              }
-            />
-            <Route path="posts" element={<PostList></PostList>} />
-            <Route
-              path="posts/:id"
-              element={
-                <Suspense fallback={<>Loading</>}>
-                  <PostDetails />
-                </Suspense>
-              }
-            />
-            <Route path="photos" element={<PhotoList></PhotoList>} />
-            <Route path="color" element={<SelectColor></SelectColor>} />
-            <Route
-              path="counter"
-              element={
-                <Suspense fallback={<>Loading</>}>
-                  <Counter />
-                </Suspense>
-              }
-            />
-            <Route
-              path="tasks"
-              element={
-                <Suspense fallback={<>Loading</>}>
-                  <TaskList />
-                </Suspense>
-              }
-            />
-            <Route path="404" element={<NotFound></NotFound>} />
-            <Route path="*" element={<Navigate to="/404"></Navigate>} />
-          </Routes>
+          <Outlet></Outlet>
         </Content>
       </Layout>
     </Layout>

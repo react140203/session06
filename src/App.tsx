@@ -9,6 +9,7 @@ import { AppLayout } from "./components/AppLayout";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { BaseLayout } from "./components/BaseLayout";
 
 function App() {
   const [color, setColor] = useState("red");
@@ -18,7 +19,7 @@ function App() {
         <HelmetProvider>
           <BrowserRouter>
             <AppContext.Provider value={{ color, setColor }}>
-              <AppLayout />
+              <BaseLayout />
             </AppContext.Provider>
           </BrowserRouter>
         </HelmetProvider>
