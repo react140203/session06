@@ -4,8 +4,8 @@ import { PostModel } from "./PostList";
 import Descriptions from "antd/es/descriptions";
 import { Button } from "antd";
 import { Header } from "../Header";
-import axios from "axios";
-import { appApi } from "../../utils/appApi";
+// import { appApi } from "../../utils/appApi";
+import { appApi } from "@/utils/appApi";
 
 export const PostDetails = () => {
   const params = useParams();
