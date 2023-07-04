@@ -6,6 +6,7 @@ import { SelectColor } from "./SelectColor";
 import { NotFound } from "./pages/NotFound";
 import { Login } from "./pages/auth/Login";
 import { AppLayout } from "./AppLayout";
+import ProtectRoute from "./ProtectRoute";
 
 const PostDetails = lazy(() =>
   import("./pages/PostDetails").then(({ PostDetails }) => ({
@@ -23,6 +24,11 @@ const Counter = lazy(() =>
   }))
 );
 
+// if (!auth.token) {
+//   if(route == '/' || route === '/home')
+//   return children;
+// }
+
 export const BaseLayout = () => {
   return (
     <>
@@ -37,7 +43,14 @@ export const BaseLayout = () => {
               </>
             }
           />
-          <Route path="posts" element={<PostList></PostList>} />
+          <Route
+            path="posts"
+            element={
+              <ProtectRoute>
+                <PostList></PostList>
+              </ProtectRoute>
+            }
+          />
           <Route
             path="posts/:id"
             element={
@@ -46,7 +59,14 @@ export const BaseLayout = () => {
               </Suspense>
             }
           />
-          <Route path="photos" element={<PhotoList></PhotoList>} />
+          <Route
+            path="photos"
+            element={
+              <ProtectRoute>
+                <PhotoList></PhotoList>
+              </ProtectRoute>
+            }
+          />
           <Route path="color" element={<SelectColor></SelectColor>} />
           <Route
             path="counter"

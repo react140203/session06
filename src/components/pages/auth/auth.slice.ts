@@ -7,12 +7,14 @@ interface AuthState {
   loading: boolean;
   token: string;
   email: string;
+  role: string;
 }
 
 const initialState: AuthState = {
   loading: false,
   token: "", //TODO: persists token
   email: "",
+  role: "",
 };
 
 interface LoginData {
@@ -47,6 +49,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.token = action.payload.token;
       state.email = action.payload.email;
+      state.role = "admin";
     });
   },
 });

@@ -8,15 +8,56 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks";
 const { Header, Sider, Content } = Layout;
 
 export const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const auth = useAppSelector((x) => x.auth);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const navigate = useNavigate();
 
+  const menu = [
+    {
+      key: "/",
+      icon: <UserOutlined />,
+      label: "Home",
+    },
+    {
+      key: "/login",
+      icon: <UserOutlined />,
+      label: "Login",
+    },
+    {
+      key: "/posts",
+      icon: <VideoCameraOutlined />,
+      label: "Posts",
+      role: "admin",
+    },
+    {
+      key: "/photos",
+      icon: <UploadOutlined />,
+      label: "Photos",
+      role: "admin",
+    },
+    {
+      key: "/color",
+      icon: <UploadOutlined />,
+      label: "Color",
+    },
+    {
+      key: "/tasks",
+      icon: <UploadOutlined />,
+      label: "Tasks",
+    },
+    {
+      key: "/counter",
+      icon: <UploadOutlined />,
+      label: "Counter",
+    },
+  ];
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -26,43 +67,7 @@ export const AppLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["/"]}
-          items={[
-            {
-              key: "/",
-              icon: <UserOutlined />,
-              label: "Home",
-            },
-            {
-              key: "/login",
-              icon: <UserOutlined />,
-              label: "Login",
-            },
-            {
-              key: "/posts",
-              icon: <VideoCameraOutlined />,
-              label: "Posts",
-            },
-            {
-              key: "/photos",
-              icon: <UploadOutlined />,
-              label: "Photos",
-            },
-            {
-              key: "/color",
-              icon: <UploadOutlined />,
-              label: "Color",
-            },
-            {
-              key: "/tasks",
-              icon: <UploadOutlined />,
-              label: "Tasks",
-            },
-            {
-              key: "/counter",
-              icon: <UploadOutlined />,
-              label: "Counter",
-            },
-          ]}
+          items={menu.filter((x) => !x.role || x.role === auth.role)}
         />
       </Sider>
       <Layout>
