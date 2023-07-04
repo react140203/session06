@@ -19,17 +19,21 @@ export const AppLayout = () => {
   } = theme.useToken();
   const navigate = useNavigate();
 
+  const getAuthMenu = () => {
+    return {
+      key: auth.token ? "/logout" : "/login",
+      icon: <UserOutlined />,
+      label: auth.token ? "Logout" : "Login",
+    };
+  };
+
   const menu = [
     {
       key: "/",
       icon: <UserOutlined />,
       label: "Home",
     },
-    {
-      key: "/login",
-      icon: <UserOutlined />,
-      label: "Login",
-    },
+    getAuthMenu(),
     {
       key: "/posts",
       icon: <VideoCameraOutlined />,
