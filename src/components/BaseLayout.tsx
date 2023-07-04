@@ -8,6 +8,7 @@ import { Login } from "./pages/auth/Login";
 import { AppLayout } from "./AppLayout";
 import ProtectRoute from "./ProtectRoute";
 import { Logout } from "./pages/auth/logout";
+import { Register } from "./pages/auth/Register";
 
 const PostDetails = lazy(() =>
   import("./pages/PostDetails").then(({ PostDetails }) => ({
@@ -36,6 +37,7 @@ export const BaseLayout = () => {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="register" element={<Register />} />
         <Route path="/" element={<AppLayout />}>
           <Route
             path=""

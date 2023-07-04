@@ -35,6 +35,11 @@ export const AppLayout = () => {
     },
     getAuthMenu(),
     {
+      key: "/register",
+      icon: <UserOutlined />,
+      label: "Register",
+    },
+    {
       key: "/posts",
       icon: <VideoCameraOutlined />,
       label: "Posts",

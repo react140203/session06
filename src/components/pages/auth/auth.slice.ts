@@ -38,6 +38,14 @@ export const login = createAsyncThunk(
   }
 );
 
+export const register = createAsyncThunk(
+  "auth/register",
+  async (loginData: LoginData) => {
+    const resp = await appApi.post("auth/register", loginData);
+    return { token: resp.data.token, email: loginData.email };
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -59,6 +67,22 @@ const authSlice = createSlice({
       state.email = "";
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      state.loading = false;
+      state.token = action.payload.token;
+      state.email = action.payload.email;
+      state.role = "admin";
+      localStorage.setItem("auth", JSON.stringify(state));
+    });
+
+    builder.addCase(register.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(register.rejected, (state) => {
+      state.loading = false;
+      state.token = "";
+      state.email = "";
+    });
+    builder.addCase(register.fulfilled, (state, action) => {
       state.loading = false;
       state.token = action.payload.token;
       state.email = action.payload.email;
