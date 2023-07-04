@@ -7,7 +7,7 @@ import { NotFound } from "./pages/NotFound";
 import { Login } from "./pages/auth/Login";
 import { AppLayout } from "./AppLayout";
 import ProtectRoute from "./ProtectRoute";
-import { Logout } from "./pages/auth/logout";
+import { Logout } from "./pages/auth/Logout";
 import { Register } from "./pages/auth/Register";
 
 const PostDetails = lazy(() =>

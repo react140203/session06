@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { Navigate } from "react-router-dom";
 

@@ -12,7 +12,7 @@ export const Register = () => {
     if (auth.token) {
       navigate("/");
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   const onFinish = (values: any) => {
     console.log("Success:", values);

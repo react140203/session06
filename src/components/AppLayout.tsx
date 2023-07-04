@@ -1,4 +1,4 @@
-import { useState, lazy, useEffect } from "react";
+import { useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,

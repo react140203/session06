@@ -1,8 +1,6 @@
 //rafc <- snippet es7+
-import { useState, useCallback } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskItem } from "./TaskItem";
-import { ITask } from "./ITask";
 import { useAppSelector } from "../../redux/hooks";
 
 // const taskListInit = [

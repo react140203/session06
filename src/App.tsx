@@ -5,7 +5,6 @@ import "./App.css";
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AppContext } from "./appContext";
-import { AppLayout } from "./components/AppLayout";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";

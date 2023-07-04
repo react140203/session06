@@ -1,7 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { appApi } from "../utils/appApi";
-import { useAppSelector } from "../redux/hooks";
 
 export const useFetchData = <T>(endpoint: string) => {
   const [data, setData] = useState<T[]>([]);
