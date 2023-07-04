@@ -9,12 +9,20 @@ interface AuthState {
   email: string;
   role: string;
 }
+//operator guard &&
+
+// const authStr = localStorage.getItem('auth')
+// const init = JSON.parse(authStr ? authStr : '{}');
+//operator default ||
+
+const init = JSON.parse(localStorage.getItem("auth") || "{}");
 
 const initialState: AuthState = {
   loading: false,
-  token: "", //TODO: persists token
+  token: "",
   email: "",
   role: "",
+  ...init,
 };
 
 interface LoginData {
@@ -50,6 +58,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.email = action.payload.email;
       state.role = "admin";
+      localStorage.setItem("auth", JSON.stringify(state));
     });
   },
 });
