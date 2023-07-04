@@ -1,5 +1,5 @@
 import { Button, Form, Input, Layout } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "./auth.slice";
