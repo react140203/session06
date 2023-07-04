@@ -6,8 +6,9 @@ import { useAppDispatch } from "../../redux/hooks";
 
 interface TaskItemProps {
   task: ITask;
+  readOnly?: boolean;
 }
-export const TaskItem = memo(({ task }: TaskItemProps) => {
+export const TaskItem = memo(({ task, readOnly }: TaskItemProps) => {
   const { color } = useContext(AppContext);
   const dispatch = useAppDispatch();
   return (
@@ -15,10 +16,13 @@ export const TaskItem = memo(({ task }: TaskItemProps) => {
       <input
         type="checkbox"
         checked={task.done}
+        readOnly={readOnly}
         onChange={() => dispatch(toggle(task.id))}
       />
       <em style={{ color }}>{task.title}</em>
-      <button onClick={() => dispatch(remove(task.id))}>❌</button>
+      {!readOnly && (
+        <button onClick={() => dispatch(remove(task.id))}>❌</button>
+      )}
     </li>
   );
 });
