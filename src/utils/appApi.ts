@@ -3,7 +3,8 @@ import { store } from "../redux/store";
 import { notification } from "antd";
 
 export const appApi = axios.create({
-  baseURL: "http://localhost:3010",
+  // baseURL: process.env.REACT_APP_BASE_URL, #create react app
+  baseURL: import.meta.env.BASE_URL, //vite
 });
 
 appApi.interceptors.request.use((config) => {
